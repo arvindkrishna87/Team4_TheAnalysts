@@ -312,6 +312,8 @@ def main():
             run_dir, 
             top_n=args.attention_top_n
         )
+        from Code1_AttentionAllLevels_22Oct_Zaharaa import analyze_all_levels
+        analyze_all_levels(trainer.model, test_loader, run_dir, top_n=args.attention_top_n)
     
     # Save final results
     results_path = os.path.join(run_dir, "results.txt")

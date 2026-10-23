@@ -1,0 +1,15 @@
+Patches measured: 81627  (no PNG found: 178)
+Shorter side: median 199 px, 10th pct 87, 90th pct 427, min 32
+  share with shorter side < 64 px: 5.1%
+  share with shorter side < 96 px: 12.6%
+  share with shorter side < 128 px: 23.3%
+Share that become a single 1x1 cell inside DenseNet: 4.8%
+Median feature cells per patch: 36  (a 1000 px training patch has ~961)
+
+By stain (share < 128 px):
+  h&e: n=39919, median 195 px, 24.4% < 128 px
+  melan: n=22710, median 192 px, 25.7% < 128 px
+  sox10: n=18998, median 212 px, 18.0% < 128 px
+
+Cases: 99. Cases with NO patch >= 128 px: 0 []
+Patches kept at 128 px: 76.7%
