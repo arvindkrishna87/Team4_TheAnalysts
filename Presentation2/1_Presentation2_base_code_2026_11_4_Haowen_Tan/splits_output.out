@@ -1,0 +1,402 @@
+Job ID: 7050531
+Start time: Tue Nov  3 11:34:38 CST 2026
+Requirement already satisfied: certifi in /projects/e32998/env/lib/python3.12/site-packages (2026.10.23)
+================================================================================
+CREATING DATA SPLITS (GROUPED CASES + MATCHED PROPORTIONS)
+================================================================================
+labels_csv:        /home/beh0765/Presentation2_base_code/extra_benign_case_grade_match.csv
+patches_dir:       /projects/e32998/patches_benign_split
+seed:              42
+save_dir:          /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits
+grouped_cases:     [(22, 107, 108), (24, 118), (25, 119), (26, 109, 110, 111)]
+ratios (targets):  train=0.6, val=0.2, test=0.2
+max_ratio_den:     20
+
+Loaded 118 label rows
+Found 83630 files in patches_dir
+All 3808 non-standard file names were handled.
+Grouped into 383 slices
+Mapped 371 slices to classes
+
+Overall case counts:
+  Total:  93  |  Benign: 35  |  High: 58
+
+================================================================================
+Fold 1
+================================================================================
+
+Final achieved high-grade ratios:
+  Train: 36/57 = 0.631579
+  Val:   11/18 = 0.611111
+  Test:  11/18 = 0.611111
+
+Slice counts after split:
+  Train slices: 194
+  Val slices:   101
+  Test slices:  76
+
+----------------------------------------
+LEAK CHECK
+----------------------------------------
+Cases per split: 57 18 18
+Paths per split: 45581 21524 12936
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+========================================
+TRAIN SPLIT
+========================================
+Total cases:      57
+Benign (0):       21
+High-grade (1):   36
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[22, 23, 24, 26, 30, 36, 43, 45, 46, 53, 79, 85, 86, 90, 96, 107, 108, 109, 110, 111, 118]
+
+High-grade CASE IDs:
+[3, 5, 7, 9, 11, 14, 16, 17, 18, 19, 40, 44, 47, 48, 51, 52, 54, 55, 57, 58, 61, 64, 66, 67, 68, 70, 72, 80, 83, 84, 87, 88, 89, 95, 101, 106]
+
+========================================
+VAL SPLIT
+========================================
+Total cases:      18
+Benign (0):       7
+High-grade (1):   11
+High-grade ratio: 0.611111
+
+Benign CASE IDs:
+[2, 34, 56, 77, 78, 82, 94]
+
+High-grade CASE IDs:
+[38, 41, 50, 59, 60, 63, 92, 97, 98, 100, 104]
+
+========================================
+TEST SPLIT
+========================================
+Total cases:      18
+Benign (0):       7
+High-grade (1):   11
+High-grade ratio: 0.611111
+
+Benign CASE IDs:
+[4, 21, 25, 27, 28, 93, 119]
+
+High-grade CASE IDs:
+[1, 12, 15, 32, 42, 49, 69, 73, 75, 91, 99]
+Data splits saved to: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_01.npz
+
+========================================
+DONE
+========================================
+Saved: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_01.npz
+Use it like:
+  python main.py --load_splits /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_01.npz
+
+================================================================================
+Fold 2
+================================================================================
+
+Final achieved high-grade ratios:
+  Train: 35/56 = 0.625000
+  Val:   11/18 = 0.611111
+  Test:  12/19 = 0.631579
+
+Slice counts after split:
+  Train slices: 225
+  Val slices:   76
+  Test slices:  70
+
+----------------------------------------
+LEAK CHECK
+----------------------------------------
+Cases per split: 56 18 19
+Paths per split: 51747 12936 15358
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+========================================
+TRAIN SPLIT
+========================================
+Total cases:      56
+Benign (0):       21
+High-grade (1):   35
+High-grade ratio: 0.625000
+
+Benign CASE IDs:
+[2, 22, 23, 24, 30, 34, 36, 43, 46, 53, 56, 77, 78, 79, 82, 85, 94, 96, 107, 108, 118]
+
+High-grade CASE IDs:
+[5, 7, 9, 14, 16, 17, 18, 19, 38, 41, 44, 48, 50, 55, 57, 58, 59, 60, 61, 63, 64, 66, 67, 68, 72, 80, 87, 89, 92, 95, 97, 98, 100, 101, 104]
+
+========================================
+VAL SPLIT
+========================================
+Total cases:      18
+Benign (0):       7
+High-grade (1):   11
+High-grade ratio: 0.611111
+
+Benign CASE IDs:
+[4, 21, 25, 27, 28, 93, 119]
+
+High-grade CASE IDs:
+[1, 12, 15, 32, 42, 49, 69, 73, 75, 91, 99]
+
+========================================
+TEST SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[26, 45, 86, 90, 109, 110, 111]
+
+High-grade CASE IDs:
+[3, 11, 40, 47, 51, 52, 54, 70, 83, 84, 88, 106]
+Data splits saved to: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_02.npz
+
+========================================
+DONE
+========================================
+Saved: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_02.npz
+Use it like:
+  python main.py --load_splits /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_02.npz
+
+================================================================================
+Fold 3
+================================================================================
+
+Final achieved high-grade ratios:
+  Train: 34/55 = 0.618182
+  Val:   12/19 = 0.631579
+  Test:  12/19 = 0.631579
+
+Slice counts after split:
+  Train slices: 230
+  Val slices:   70
+  Test slices:  71
+
+----------------------------------------
+LEAK CHECK
+----------------------------------------
+Cases per split: 55 19 19
+Paths per split: 47820 15358 16863
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+========================================
+TRAIN SPLIT
+========================================
+Total cases:      55
+Benign (0):       21
+High-grade (1):   34
+High-grade ratio: 0.618182
+
+Benign CASE IDs:
+[2, 4, 21, 23, 24, 25, 27, 28, 30, 34, 36, 43, 46, 56, 77, 78, 82, 93, 94, 118, 119]
+
+High-grade CASE IDs:
+[1, 5, 7, 12, 15, 16, 32, 38, 41, 42, 48, 49, 50, 55, 57, 58, 59, 60, 63, 66, 67, 69, 73, 75, 87, 91, 92, 95, 97, 98, 99, 100, 101, 104]
+
+========================================
+VAL SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[26, 45, 86, 90, 109, 110, 111]
+
+High-grade CASE IDs:
+[3, 11, 40, 47, 51, 52, 54, 70, 83, 84, 88, 106]
+
+========================================
+TEST SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[22, 53, 79, 85, 96, 107, 108]
+
+High-grade CASE IDs:
+[9, 14, 17, 18, 19, 44, 61, 64, 68, 72, 80, 89]
+Data splits saved to: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_03.npz
+
+========================================
+DONE
+========================================
+Saved: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_03.npz
+Use it like:
+  python main.py --load_splits /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_03.npz
+
+================================================================================
+Fold 4
+================================================================================
+
+Final achieved high-grade ratios:
+  Train: 34/55 = 0.618182
+  Val:   12/19 = 0.631579
+  Test:  12/19 = 0.631579
+
+Slice counts after split:
+  Train slices: 247
+  Val slices:   71
+  Test slices:  53
+
+----------------------------------------
+LEAK CHECK
+----------------------------------------
+Cases per split: 55 19 19
+Paths per split: 49818 16863 13360
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+========================================
+TRAIN SPLIT
+========================================
+Total cases:      55
+Benign (0):       21
+High-grade (1):   34
+High-grade ratio: 0.618182
+
+Benign CASE IDs:
+[2, 4, 21, 25, 26, 27, 28, 34, 45, 56, 77, 78, 82, 86, 90, 93, 94, 109, 110, 111, 119]
+
+High-grade CASE IDs:
+[1, 3, 11, 12, 15, 32, 38, 40, 41, 42, 47, 49, 50, 51, 52, 54, 59, 60, 63, 69, 70, 73, 75, 83, 84, 88, 91, 92, 97, 98, 99, 100, 104, 106]
+
+========================================
+VAL SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[22, 53, 79, 85, 96, 107, 108]
+
+High-grade CASE IDs:
+[9, 14, 17, 18, 19, 44, 61, 64, 68, 72, 80, 89]
+
+========================================
+TEST SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[23, 24, 30, 36, 43, 46, 118]
+
+High-grade CASE IDs:
+[5, 7, 16, 48, 55, 57, 58, 66, 67, 87, 95, 101]
+Data splits saved to: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_04.npz
+
+========================================
+DONE
+========================================
+Saved: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_04.npz
+Use it like:
+  python main.py --load_splits /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_04.npz
+
+================================================================================
+Fold 5
+================================================================================
+
+Final achieved high-grade ratios:
+  Train: 35/56 = 0.625000
+  Val:   12/19 = 0.631579
+  Test:  11/18 = 0.611111
+
+Slice counts after split:
+  Train slices: 217
+  Val slices:   53
+  Test slices:  101
+
+----------------------------------------
+LEAK CHECK
+----------------------------------------
+Cases per split: 56 19 18
+Paths per split: 45157 13360 21524
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+========================================
+TRAIN SPLIT
+========================================
+Total cases:      56
+Benign (0):       21
+High-grade (1):   35
+High-grade ratio: 0.625000
+
+Benign CASE IDs:
+[4, 21, 22, 25, 26, 27, 28, 45, 53, 79, 85, 86, 90, 93, 96, 107, 108, 109, 110, 111, 119]
+
+High-grade CASE IDs:
+[1, 3, 9, 11, 12, 14, 15, 17, 18, 19, 32, 40, 42, 44, 47, 49, 51, 52, 54, 61, 64, 68, 69, 70, 72, 73, 75, 80, 83, 84, 88, 89, 91, 99, 106]
+
+========================================
+VAL SPLIT
+========================================
+Total cases:      19
+Benign (0):       7
+High-grade (1):   12
+High-grade ratio: 0.631579
+
+Benign CASE IDs:
+[23, 24, 30, 36, 43, 46, 118]
+
+High-grade CASE IDs:
+[5, 7, 16, 48, 55, 57, 58, 66, 67, 87, 95, 101]
+
+========================================
+TEST SPLIT
+========================================
+Total cases:      18
+Benign (0):       7
+High-grade (1):   11
+High-grade ratio: 0.611111
+
+Benign CASE IDs:
+[2, 34, 56, 77, 78, 82, 94]
+
+High-grade CASE IDs:
+[38, 41, 50, 59, 60, 63, 92, 97, 98, 100, 104]
+Data splits saved to: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_05.npz
+
+========================================
+DONE
+========================================
+Saved: /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_05.npz
+Use it like:
+  python main.py --load_splits /home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_05.npz
