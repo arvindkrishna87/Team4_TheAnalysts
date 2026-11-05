@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-# After prepare_data(args), added calls to filter_missing_embeddings() for train, validation, and test splits.
-# Passes only audited, retained patch lists into the existing dataset/model flow; the trained model architecture and attention formulation were not changed.
-
-
 
 """
 Main training script for Hierarchical Attention MIL model
@@ -15,7 +11,8 @@ import torch
 import pandas as pd
 from torch.utils.data import DataLoader
 from collections import defaultdict
-from audited_patch_filter import filter_missing_embeddings
+from audited_patch_filter import audit_selected_split
+
 
 EMB_DIR = "/projects/e32998/patches_varsize_pooled4096"  # <-- same as precompute script output
 
@@ -166,7 +163,7 @@ def prepare_data(args):
     return (train_case_dict, train_label_map), (val_case_dict, val_label_map), (test_case_dict, test_label_map)
 
 
-def create_data_loaders(train_data, val_data, test_data, args):
+def create_data_loaders(train_data, val_data, test_data, args, run_dir):
     """Create data loaders (precomputed pooled features)"""
     print("\n" + "=" * 60)
     print("CREATING DATA LOADERS (POOLED FEATURES)")
@@ -182,6 +179,8 @@ def create_data_loaders(train_data, val_data, test_data, args):
         per_slice_cap=args.per_slice_cap,
         max_slices_per_stain=args.max_slices_per_stain,
         shuffle_patches=True,
+        audit_dir=run_dir,
+        split_name="train",
     )
 
     val_ds = StainBagCasePooledFeatureDataset(
@@ -190,6 +189,8 @@ def create_data_loaders(train_data, val_data, test_data, args):
         per_slice_cap=args.per_slice_cap,
         max_slices_per_stain=args.max_slices_per_stain,
         shuffle_patches=False,
+        audit_dir=run_dir,
+        split_name="val",
     )
 
     test_ds = StainBagCasePooledFeatureDataset(
@@ -198,6 +199,8 @@ def create_data_loaders(train_data, val_data, test_data, args):
         per_slice_cap=args.per_slice_cap,
         max_slices_per_stain=args.max_slices_per_stain,
         shuffle_patches=False,
+        audit_dir=run_dir,
+        split_name="test",
     )
 
     train_loader = DataLoader(
@@ -249,29 +252,16 @@ def main():
     # Prepare data
     train_data, val_data, test_data = prepare_data(args)
 
-    # Filter missing embeddings before creating DataLoaders
-# Record all exclusions in the new run directory
+    if args.eval_only:
+        audit_selected_split(
+            split_name="test",
+            data=test_data,
+            embeddings_dir=EMB_DIR,
+            output_dir=run_dir,
+            per_slice_cap=args.per_slice_cap,
+            max_slices_per_stain=args.max_slices_per_stain,
+        )
 
-    train_data = filter_missing_embeddings(
-        split_name="train",
-        data=train_data,
-        embeddings_dir=EMB_DIR,
-        output_dir=run_dir,
-    )
-
-    val_data = filter_missing_embeddings(
-        split_name="val",
-        data=val_data,
-        embeddings_dir=EMB_DIR,
-        output_dir=run_dir,
-    )
-
-    test_data = filter_missing_embeddings(
-        split_name="test",
-        data=test_data,
-        embeddings_dir=EMB_DIR,
-        output_dir=run_dir,
-    )
     
     # Save data splits for reproducibility (unless loaded from existing)
     train_cases = list(train_data[0].keys())
@@ -283,8 +273,7 @@ def main():
         print(f"Using existing splits from: {args.load_splits}")
     
     # Create data loaders
-    train_loader, val_loader, test_loader = create_data_loaders(train_data, val_data, test_data, args)
-    
+    train_loader, val_loader, test_loader = create_data_loaders(train_data, val_data, test_data, args, run_dir)
     # Create model
     print("\n" + "=" * 60)
     print("CREATING MODEL")

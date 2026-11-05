@@ -8,6 +8,7 @@ from torch.utils.data import Dataset
 from typing import Dict, List, Any, Optional, Tuple
 
 from config import MODEL_CONFIG
+from audited_patch_filter import log_missing_embedding
 
 
 class StainBagCasePooledFeatureDataset(Dataset):
@@ -39,6 +40,8 @@ class StainBagCasePooledFeatureDataset(Dataset):
         drop_empty_slices: bool = True,
         # NEW: force a consistent dtype so fp16 embeddings won't crash fp32 model
         feature_dtype: torch.dtype = torch.float32,
+        audit_dir: Optional[str] = None,
+        split_name: str = "unknown",
     ):
         self.embeddings_dir = embeddings_dir
         self.stains = list(stains) if stains else list(MODEL_CONFIG["stains"])
@@ -51,6 +54,8 @@ class StainBagCasePooledFeatureDataset(Dataset):
 
         # NEW
         self.feature_dtype = feature_dtype
+        self.audit_dir = audit_dir
+        self.split_name = split_name
 
         self.items = []
         for case_id, stain_map in case_dict.items():
@@ -69,7 +74,8 @@ class StainBagCasePooledFeatureDataset(Dataset):
         feat_name = os.path.splitext(fname)[0] + ".pt"
         return os.path.join(self.embeddings_dir, feat_name)
 
-    def _load_slice_tensor(self, patch_paths: List[str]) -> Optional[torch.Tensor]:
+    def _load_slice_tensor(self,patch_paths: List[str],case_id,stain: str,slice_idx: int,):
+
         patch_paths = list(patch_paths)
         if self.shuffle_patches:
             random.shuffle(patch_paths)
@@ -84,9 +90,20 @@ class StainBagCasePooledFeatureDataset(Dataset):
             fp = self._patch_path_to_feat_path(p)
 
             if not os.path.isfile(fp):
+                csv_path = log_missing_embedding(
+                    audit_dir=self.audit_dir,
+                    split_name=self.split_name,
+                    case_id=case_id,
+                    stain=stain,
+                    slice_idx=slice_idx,
+                    patch_path=p,
+                    embedding_path=fp,
+                )
+
                 raise FileNotFoundError(
-                    f"Missing embedding for patch: {p}\n"
-                    f"Expected embedding at: {fp}"
+                    f"Missing embedding for selected patch: {p}\n"
+                    f"Expected embedding: {fp}\n"
+                    f"Audit saved to: {csv_path}"
                 )
 
             try: # Removed the silent “except: continue” behavior for unexpected embedding-loading failures; a missing or unreadable expected .pt triggers an informative error. Optional empty-slice handling remains separate.
@@ -134,11 +151,11 @@ class StainBagCasePooledFeatureDataset(Dataset):
             tensors_for_stain: List[torch.Tensor] = []
             paths_for_stain = []
 
-            for sl in slice_lists:
+            for slice_idx, sl in enumerate(slice_lists):
                 if not sl:
                     continue
 
-                result = self._load_slice_tensor(sl)
+                result = self._load_slice_tensor(sl,case_id=case_id,stain=stain,slice_idx=slice_idx,)
 
                 if result is None:
                     if self.drop_empty_slices:

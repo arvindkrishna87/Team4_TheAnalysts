@@ -22,7 +22,7 @@ eval "$(conda shell.bash hook)"
 conda activate /projects/e32998/env
 
 # Use your personal code directory
-cd /home/beh0765/Presentation2_base_code
+cd /home/beh0765/1_Presentation2_base_code_2026_11_4_Haowen_Tan
 
 # Create a personal output directory
 mkdir -p /home/beh0765/MIL_patch_tracking_runs
@@ -65,8 +65,7 @@ sys.argv = [
     "--resume",
     "/projects/e32998/MIL_training/final_runs/run_20261028_054746/checkpoints/best.pth",
     "--load_splits",
-    "/home/beh0765/Presentation2_base_code/no_train_val_leakage_splits/data_splits_new_05.npz",
-    "--analyze_attention",
+    "/home/beh0765/1_Presentation2_base_code_2026_11_4_Haowen_Tan/no_train_val_leakage_splits/data_splits_new_05.npz",    "--analyze_attention",
     "--attention_top_n", "8",
     "--per_slice_cap", "500",
     "--max_slices_per_stain", "5",
