@@ -1,0 +1,4 @@
+Using attention CSV /projects/e32998/MIL_training/final_runs/run_20261119_115429_845084_919520/attention_analysis/patch_attention_by_filename.csv
+Case 46: slice .tifs found for (stain, match) [('h&e', 1), ('melan', 1), ('sox10', 1)]
+case46_h&e_match1: loading /home/wtq4672/Presentation3_base_code/full_slice_tifs/Case_046/match_1/h211979 h&e_1.tif and extracting features ...
+Wrote 1 overlay(s) to /home/wtq4672/Presentation3_base_code/top_patch_overlays/run_20261119_115429_845084_919520/

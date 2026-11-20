@@ -1,0 +1,9 @@
+case,stain,slice_idx,rank,patch_idx,effective_weight,patch_file,found,center_x,center_y,rotation_deg,scale,inliers,confidence
+18,h&e,0,1,82,0.0443629743956874,/projects/e32998/patches_benign_split/case_18_match_1_h&e_patch82.png,True,4532.6,5064.0,-48.42,1.0,913,high
+18,h&e,0,2,83,0.0300523999534332,/projects/e32998/patches_benign_split/case_18_match_1_h&e_patch83.png,True,4405.5,4950.0,-51.86,1.0,1189,high
+18,h&e,0,3,28,0.0078594043369204,/projects/e32998/patches_benign_split/case_18_match_1_h&e_patch28.png,True,901.3,1511.9,134.03,1.0001,945,high
+18,sox10,0,4,179,0.0076798163560016,/projects/e32998/patches_benign_split/case_18_match_1_sox10_patch179.png,True,2993.5,5240.5,-10.74,1.0,1733,high
+18,sox10,0,5,76,0.0074024544881798,/projects/e32998/patches_benign_split/case_18_match_1_sox10_patch76.png,True,3129.6,5776.4,107.24,1.0,3436,high
+18,sox10,0,6,82,0.0070450493881877,/projects/e32998/patches_benign_split/case_18_match_1_sox10_patch82.png,True,3493.3,6499.9,125.31,1.0,2053,high
+18,sox10,0,7,86,0.0064763256024039,/projects/e32998/patches_benign_split/case_18_match_1_sox10_patch86.png,True,4067.5,7050.5,-177.44,0.9997,1763,high
+18,sox10,0,8,81,0.0061932813709005,/projects/e32998/patches_benign_split/case_18_match_1_sox10_patch81.png,True,3337.4,6346.9,121.22,1.0,1340,high

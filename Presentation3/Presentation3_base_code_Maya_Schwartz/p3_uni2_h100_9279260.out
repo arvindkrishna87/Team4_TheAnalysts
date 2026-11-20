@@ -1,0 +1,4 @@
+CUDA available: True
+Pretrained UNI2-h loaded successfully!
+Model device: cuda:0
+Output shape: (1, 1536)
