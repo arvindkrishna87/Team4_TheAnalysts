@@ -1,0 +1,9 @@
+
+PATCH FEATURE EXTRACTION COMPLETE
+=======================================================
+Eligible PNGs inspected: 85413
+Rows written: 85413
+Distinct cases: 99
+Unrecognized filenames: 1151
+Image read errors: 0
+Output: patch_features_all.csv

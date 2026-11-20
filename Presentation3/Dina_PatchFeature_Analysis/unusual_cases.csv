@@ -1,0 +1,40 @@
+case_id,grade,flag_type,feature,value,lower_threshold,upper_threshold,reason
+5,High-grade,Statistical outlier,small_patch_share,0.9153543307086616,-0.3122767305562867,0.7836061568736851,Above upper threshold
+16,High-grade,Missing stain,melan_share,0.0,,,No melan PNG patches
+16,High-grade,Missing stain,sox10_share,0.0,,,No sox10 PNG patches
+16,High-grade,Statistical outlier,he_share,1.0,-0.019553059229346192,0.9731019909641969,Above upper threshold
+16,High-grade,Statistical outlier,melan_share,0.0,0.06114715659115183,0.48999017878812107,Below lower threshold
+17,High-grade,Missing stain,melan_share,0.0,,,No melan PNG patches
+17,High-grade,Statistical outlier,melan_share,0.0,0.06114715659115183,0.48999017878812107,Below lower threshold
+17,High-grade,Statistical outlier,patch_area_IQR,176724.0,-57214.25,163755.75,Above upper threshold
+17,High-grade,Statistical outlier,sox10_share,0.5358565737051793,-0.02574851417005486,0.49885996121521115,Above upper threshold
+21,Benign,Missing stain,sox10_share,0.0,,,No sox10 PNG patches
+35,High-grade,Statistical outlier,patches_per_slice,682.5,-152.6095238095238,660.2857142857142,Above upper threshold
+38,High-grade,Statistical outlier,patch_area_IQR,482160.0,-57214.25,163755.75,Above upper threshold
+46,Benign,Statistical outlier,median_patch_area,159201.0,-35157.0,120003.0,Above upper threshold
+46,Benign,Statistical outlier,patch_area_IQR,431776.0,-57214.25,163755.75,Above upper threshold
+47,High-grade,Statistical outlier,patches_per_slice,1236.0,-152.6095238095238,660.2857142857142,Above upper threshold
+47,High-grade,Statistical outlier,small_patch_share,0.8559870550161812,-0.3122767305562867,0.7836061568736851,Above upper threshold
+49,High-grade,Statistical outlier,median_patch_area,1704334.0,-35157.0,120003.0,Above upper threshold
+49,High-grade,Statistical outlier,patch_area_IQR,3311265.0,-57214.25,163755.75,Above upper threshold
+51,High-grade,Statistical outlier,median_patch_area,126736.0,-35157.0,120003.0,Above upper threshold
+58,High-grade,Statistical outlier,patches_per_slice,785.0,-152.6095238095238,660.2857142857142,Above upper threshold
+59,High-grade,Statistical outlier,median_patch_area,3998000.0,-35157.0,120003.0,Above upper threshold
+59,High-grade,Statistical outlier,patch_area_IQR,3982076.0,-57214.25,163755.75,Above upper threshold
+60,High-grade,Statistical outlier,median_patch_area,277729.0,-35157.0,120003.0,Above upper threshold
+60,High-grade,Statistical outlier,patch_area_IQR,993780.0,-57214.25,163755.75,Above upper threshold
+60,High-grade,Statistical outlier,patches_per_slice,739.0,-152.6095238095238,660.2857142857142,Above upper threshold
+61,High-grade,Statistical outlier,patches_per_slice,813.0,-152.6095238095238,660.2857142857142,Above upper threshold
+62,High-grade,Statistical outlier,patches_per_slice,1604.0,-152.6095238095238,660.2857142857142,Above upper threshold
+62,High-grade,Statistical outlier,small_patch_share,0.9831670822942644,-0.3122767305562867,0.7836061568736851,Above upper threshold
+67,High-grade,Statistical outlier,median_patch_area,340914.0,-35157.0,120003.0,Above upper threshold
+67,High-grade,Statistical outlier,patch_area_IQR,1158554.0,-57214.25,163755.75,Above upper threshold
+70,High-grade,Statistical outlier,median_patch_area,245025.0,-35157.0,120003.0,Above upper threshold
+70,High-grade,Statistical outlier,patch_area_IQR,1846629.0,-57214.25,163755.75,Above upper threshold
+80,High-grade,Filename review,annotation_flag_count,142.0,,,Contains h&e-labels filenames
+82,Benign,Filename review,annotation_flag_count,509.0,,,Contains h&e-labels filenames
+83,High-grade,Filename review,annotation_flag_count,230.0,,,Contains h&e-labels filenames
+87,High-grade,Filename review,annotation_flag_count,167.0,,,Contains h&e-labels filenames
+90,Benign,Statistical outlier,patch_area_IQR,235886.0,-57214.25,163755.75,Above upper threshold
+91,High-grade,Statistical outlier,median_patch_area,4205575.0,-35157.0,120003.0,Above upper threshold
+91,High-grade,Statistical outlier,patch_area_IQR,4190393.25,-57214.25,163755.75,Above upper threshold
