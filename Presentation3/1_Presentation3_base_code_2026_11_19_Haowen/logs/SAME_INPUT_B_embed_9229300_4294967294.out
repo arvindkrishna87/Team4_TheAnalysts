@@ -1,0 +1,15 @@
+[INFO] patches_dir:      /projects/e32998/patch_images
+[INFO] embeddings_dir:   /home/beh0765/embeddings_uni2_original_size
+[INFO] encoder:          uni2
+[INFO] kimianet_ckpt:    KimiaNet.pth
+[INFO] shard:            1 of 1
+[INFO] device:           cuda
+[INFO] batch_size:       64
+[INFO] num_workers:      2
+[INFO] overwrite:        False
+[INFO] dtype:            fp16
+[INFO] min_patch_size:   32x32
+[INFO] log_every:        20
+[INFO] resizing:         disabled
+[INFO] forward pass:     batched
+[INFO] Found 89002 PNG files.

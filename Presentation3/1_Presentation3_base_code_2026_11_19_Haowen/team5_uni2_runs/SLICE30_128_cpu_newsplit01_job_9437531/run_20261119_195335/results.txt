@@ -1,0 +1,9 @@
+Test Results:
+Test Loss: 0.0125
+Test Accuracy: 1.0000
+Number of samples: 18
+Checkpoint used: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/SLICE30_128_cpu_newsplit01_job_9437531/run_20261119_195335/checkpoints/best.pth
+
+Output files:
+- predictions.csv: Per-case predictions and probabilities
+- confusion_matrix.png: Visual confusion matrix

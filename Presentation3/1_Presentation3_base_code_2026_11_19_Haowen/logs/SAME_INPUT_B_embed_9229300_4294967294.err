@@ -1,0 +1,36 @@
+huggingface_hub.errors.OfflineModeIsEnabled: Cannot reach https://huggingface.co/MahmoodLab/UNI2-h/resolve/main/config.json: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/gpfs/home/beh0765/Presentation3_base_code/precompute_pooled_features.py", line 379, in <module>
+    main()
+  File "/gpfs/home/beh0765/Presentation3_base_code/precompute_pooled_features.py", line 270, in main
+    features = load_uni2(pretrained=not args.uni2_untrained, native_size=args.uni2_native_size)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/beh0765/Presentation3_base_code/precompute_pooled_features.py", line 214, in load_uni2
+    return timm.create_model(name, pretrained=pretrained, **timm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/timm/models/_factory.py", line 151, in create_model
+    pretrained_cfg, model_name, model_args = load_model_config_from_hf(
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/timm/models/_hub.py", line 196, in load_model_config_from_hf
+    cfg_path = download_from_hf(model_id, "config.json", cache_dir=cache_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/timm/models/_hub.py", line 150, in download_from_hf
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 276, in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/e32998/env/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1194, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/projects/e32998/env/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1962, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the file on the Hub and we cannot find the requested files in the local cache. Please check your connection and try again or make sure your Internet connection is on.

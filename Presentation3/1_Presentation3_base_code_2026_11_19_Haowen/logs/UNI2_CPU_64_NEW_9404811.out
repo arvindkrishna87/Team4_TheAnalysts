@@ -1,0 +1,328 @@
+Job ID: 9404811
+Start time: Thu Nov 19 15:37:07 CST 2026
+Random seed set to 42
+Using CPU
+Created run directory: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745
+================================================================================
+HIERARCHICAL ATTENTION MIL TRAINING
+================================================================================
+Arguments: {'labels_csv': '/projects/e32998/STAT390_Krish/Code/Code4_reduce_runtime/extra_benign_case_grade_match.csv', 'patches_dir': '/projects/e32998/patch_images', 'embeddings_dir': '/projects/e32998/STAT390_Fall2026/Team5_TheWildcards/patch_embeddings_UNI2', 'epochs': 30, 'stain_dropout_prob': 0.0, 'slice_dropout_prob': 0.0, 'lr': 0.000208, 'batch_size': 1, 'num_workers': 2, 'pooled_dim': 1536, 'embed_dim': 64, 'per_slice_cap': 500, 'max_slices_per_stain': 5, 'seed': 42, 'resume': None, 'eval_only': False, 'analyze_attention': False, 'attention_top_n': 5, 'load_splits': 'team5_new_splits/data_splits_new_01.npz', 'checkpoint_dir': '/gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints'}
+Training config (may be overridden by arguments): {'epochs': 30, 'batch_size': 1, 'learning_rate': 0.000208, 'weight_decay': 0.000305, 'num_workers': 2, 'pin_memory': True, 'random_state': 42, 'class_weights': [2.5285, 1.0], 'dropout': 0.2599, 'stain_dropout_prob': 0.0, 'slice_dropout_prob': 0.0, 'use_scheduler': True, 'scheduler_type': 'reduce_on_plateau', 'scheduler_patience': 4, 'scheduler_factor': 0.2139, 'scheduler_min_lr': 1e-06, 'early_stopping': True, 'early_stopping_patience': 8, 'early_stopping_min_delta': 0.001, 'early_stopping_min_epochs': 10, 'use_patch_entropy_regularization': True, 'patch_entropy_lambda': 0.001, 'patch_entropy_mode': 'max', 'patch_entropy_eps': 1e-08, 'normalize_patch_entropy': True}
+============================================================
+PREPARING DATA
+============================================================
+Loaded 118 labels
+Original PNG patches: 89002
+Patches with embeddings: 81627
+Excluded patches: 7375
+Found 81627 patch files
+All 3751 non-standard file names were handled.
+Grouped into 383 slices
+Mapped 371 slices to classes
+Class distribution: {1: 238, 0: 133}
+
+----------------------------------------
+SPLITTING DATA
+----------------------------------------
+Loading existing splits from: team5_new_splits/data_splits_new_01.npz
+Data splits loaded from: team5_new_splits/data_splits_new_01.npz
+Loaded splits - Train: 194, Val: 101, Test: 76
+Cases per split: 57 18 18
+Paths per split: 44578 20673 12816
+No leakage between train & val (cases).
+No leakage between train & test (cases).
+No leakage between val & test (cases).
+No leakage between train & val (paths).
+No leakage between train & test (paths).
+No leakage between val & test (paths).
+
+Data Summary:
+==================================================
+
+Label distribution per split:
+label   0   1
+split        
+test    7  11
+train  21  36
+val     7  11
+
+Mean patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         361.3          205.1          145.6
+train        389.5          213.5          179.1
+val          557.2          309.9          281.4
+
+Median patches per stain per split:
+       h&e_patches  melan_patches  sox10_patches
+split                                           
+test         294.5          153.0          123.5
+train        325.0          185.0          163.0
+val          346.5          183.0          169.5
+
+Missing stain proportion:
+       h&e_missing  melan_missing  sox10_missing
+split                                           
+test           0.0          0.000          0.056
+train          0.0          0.035          0.018
+val            0.0          0.000          0.000
+
+Total cases: 93
+Total patches: 78,067
+==================================================
+
+Patch count by class for Train:
+  Benign (0):     15498 patches
+  High-grade (1): 29080 patches
+
+Patch count by class for Validation:
+  Benign (0):     4848 patches
+  High-grade (1): 15825 patches
+
+Patch count by class for Test:
+  Benign (0):     5115 patches
+  High-grade (1): 7701 patches
+
+Data Integrity Check for Train:
+Stain coverage:
+  h&e: 57/57 (100.0%)
+  melan: 55/57 (96.5%)
+  sox10: 56/57 (98.2%)
+No issues found
+
+Data Integrity Check for Validation:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  melan: 18/18 (100.0%)
+  sox10: 18/18 (100.0%)
+No issues found
+
+Data Integrity Check for Test:
+Stain coverage:
+  h&e: 18/18 (100.0%)
+  melan: 18/18 (100.0%)
+  sox10: 17/18 (94.4%)
+No issues found
+Using existing splits from: team5_new_splits/data_splits_new_01.npz
+
+============================================================
+CREATING DATA LOADERS (POOLED FEATURES)
+============================================================
+Created data loaders - Train: 57, Val: 18, Test: 18
+
+============================================================
+CREATING MODEL
+============================================================
+
+Model Summary:
+==================================================
+Total parameters: 148,805
+Trainable parameters: 148,805
+Model size: 0.57 MB
+==================================================
+Stain dropout probability: 0.0
+Slice dropout probability: 0.0
+
+============================================================
+TRAINING MODEL
+============================================================
+Starting training from epoch 1 to 30
+Device: cpu
+Model parameters: 148,805
+LR scheduler: ReduceLROnPlateau
+Patch entropy regularization enabled (lambda=0.001, mode=max, normalize=True) -> maximize entropy (smoother attention)
+Early stopping enabled (patience=8, min_delta=0.001, min_epochs=10)
+
+Epoch 1/30 (LR: 2.08e-04)
+Train Loss: 0.9914 | Train CE: 0.9924 | Train Patch Entropy: 0.9999 | Val Loss: 0.9120 | Val Acc: 0.5000
+Epoch Time: 291.17s
+New best validation loss: 0.912001 at epoch 1
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154248_HierarchicalAttnMIL_epoch1.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 2/30 (LR: 2.08e-04)
+Train Loss: 0.8747 | Train CE: 0.8757 | Train Patch Entropy: 0.9997 | Val Loss: 0.8326 | Val Acc: 0.5000
+Epoch Time: 73.40s
+New best validation loss: 0.832560 at epoch 2
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154401_HierarchicalAttnMIL_epoch2.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 3/30 (LR: 2.08e-04)
+Train Loss: 0.7053 | Train CE: 0.7063 | Train Patch Entropy: 0.9993 | Val Loss: 0.6540 | Val Acc: 0.7222
+Epoch Time: 31.57s
+New best validation loss: 0.653983 at epoch 3
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154433_HierarchicalAttnMIL_epoch3.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 4/30 (LR: 2.08e-04)
+Train Loss: 0.5212 | Train CE: 0.5222 | Train Patch Entropy: 0.9975 | Val Loss: 0.5630 | Val Acc: 0.7222
+Epoch Time: 31.51s
+New best validation loss: 0.562960 at epoch 4
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154504_HierarchicalAttnMIL_epoch4.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 5/30 (LR: 2.08e-04)
+Train Loss: 0.3645 | Train CE: 0.3655 | Train Patch Entropy: 0.9897 | Val Loss: 0.4920 | Val Acc: 0.7778
+Epoch Time: 38.99s
+New best validation loss: 0.492019 at epoch 5
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154543_HierarchicalAttnMIL_epoch5.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 6/30 (LR: 2.08e-04)
+Train Loss: 0.2080 | Train CE: 0.2090 | Train Patch Entropy: 0.9711 | Val Loss: 0.4023 | Val Acc: 0.8333
+Epoch Time: 34.05s
+New best validation loss: 0.402294 at epoch 6
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154617_HierarchicalAttnMIL_epoch6.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 7/30 (LR: 2.08e-04)
+Train Loss: 0.1533 | Train CE: 0.1543 | Train Patch Entropy: 0.9523 | Val Loss: 0.3398 | Val Acc: 0.8889
+Epoch Time: 31.74s
+New best validation loss: 0.339780 at epoch 7
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154649_HierarchicalAttnMIL_epoch7.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 8/30 (LR: 2.08e-04)
+Train Loss: 0.0980 | Train CE: 0.0989 | Train Patch Entropy: 0.9394 | Val Loss: 0.2727 | Val Acc: 0.9444
+Epoch Time: 41.34s
+New best validation loss: 0.272666 at epoch 8
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154731_HierarchicalAttnMIL_epoch8.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 9/30 (LR: 2.08e-04)
+Train Loss: 0.0280 | Train CE: 0.0289 | Train Patch Entropy: 0.9256 | Val Loss: 0.0754 | Val Acc: 1.0000
+Epoch Time: 33.45s
+New best validation loss: 0.075373 at epoch 9
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154804_HierarchicalAttnMIL_epoch9.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 10/30 (LR: 2.08e-04)
+Train Loss: 0.0221 | Train CE: 0.0230 | Train Patch Entropy: 0.9160 | Val Loss: 0.2460 | Val Acc: 0.9444
+Epoch Time: 34.70s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154839_HierarchicalAttnMIL_epoch10.pth
+
+Epoch 11/30 (LR: 2.08e-04)
+Train Loss: 0.0465 | Train CE: 0.0474 | Train Patch Entropy: 0.9174 | Val Loss: 0.0694 | Val Acc: 1.0000
+Epoch Time: 43.50s
+New best validation loss: 0.069362 at epoch 11
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154922_HierarchicalAttnMIL_epoch11.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 12/30 (LR: 2.08e-04)
+Train Loss: 0.0076 | Train CE: 0.0085 | Train Patch Entropy: 0.9091 | Val Loss: 0.0357 | Val Acc: 1.0000
+Epoch Time: 32.89s
+New best validation loss: 0.035747 at epoch 12
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_154955_HierarchicalAttnMIL_epoch12.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 13/30 (LR: 2.08e-04)
+Train Loss: 0.0074 | Train CE: 0.0083 | Train Patch Entropy: 0.9025 | Val Loss: 0.0214 | Val Acc: 1.0000
+Epoch Time: 30.57s
+New best validation loss: 0.021403 at epoch 13
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155026_HierarchicalAttnMIL_epoch13.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 14/30 (LR: 2.08e-04)
+Train Loss: 0.0049 | Train CE: 0.0058 | Train Patch Entropy: 0.8990 | Val Loss: 0.0184 | Val Acc: 1.0000
+Epoch Time: 33.00s
+New best validation loss: 0.018371 at epoch 14
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155059_HierarchicalAttnMIL_epoch14.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 15/30 (LR: 2.08e-04)
+Train Loss: 0.0041 | Train CE: 0.0050 | Train Patch Entropy: 0.8950 | Val Loss: 0.0157 | Val Acc: 1.0000
+Epoch Time: 29.36s
+New best validation loss: 0.015664 at epoch 15
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155128_HierarchicalAttnMIL_epoch15.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 16/30 (LR: 2.08e-04)
+Train Loss: 0.0073 | Train CE: 0.0081 | Train Patch Entropy: 0.8865 | Val Loss: 0.0627 | Val Acc: 1.0000
+Epoch Time: 32.49s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155201_HierarchicalAttnMIL_epoch16.pth
+
+Epoch 17/30 (LR: 2.08e-04)
+Train Loss: 0.0022 | Train CE: 0.0031 | Train Patch Entropy: 0.8838 | Val Loss: 0.0310 | Val Acc: 1.0000
+Epoch Time: 30.13s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155231_HierarchicalAttnMIL_epoch17.pth
+
+Epoch 18/30 (LR: 2.08e-04)
+Train Loss: 0.0022 | Train CE: 0.0031 | Train Patch Entropy: 0.8803 | Val Loss: 0.0137 | Val Acc: 1.0000
+Epoch Time: 29.95s
+New best validation loss: 0.013696 at epoch 18
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155301_HierarchicalAttnMIL_epoch18.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 19/30 (LR: 2.08e-04)
+Train Loss: 0.0013 | Train CE: 0.0021 | Train Patch Entropy: 0.8786 | Val Loss: 0.0148 | Val Acc: 1.0000
+Epoch Time: 29.95s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155331_HierarchicalAttnMIL_epoch19.pth
+
+Epoch 20/30 (LR: 2.08e-04)
+Train Loss: 0.0014 | Train CE: 0.0023 | Train Patch Entropy: 0.8749 | Val Loss: 0.0123 | Val Acc: 1.0000
+Epoch Time: 34.58s
+New best validation loss: 0.012348 at epoch 20
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155405_HierarchicalAttnMIL_epoch20.pth
+Best checkpoint updated: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/best.pth
+
+Epoch 21/30 (LR: 2.08e-04)
+Train Loss: 0.0015 | Train CE: 0.0023 | Train Patch Entropy: 0.8726 | Val Loss: 0.0398 | Val Acc: 1.0000
+Epoch Time: 32.27s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155438_HierarchicalAttnMIL_epoch21.pth
+
+Epoch 22/30 (LR: 2.08e-04)
+Train Loss: 0.0007 | Train CE: 0.0016 | Train Patch Entropy: 0.8704 | Val Loss: 0.0279 | Val Acc: 1.0000
+Epoch Time: 37.28s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155515_HierarchicalAttnMIL_epoch22.pth
+
+Epoch 23/30 (LR: 2.08e-04)
+Train Loss: 0.0005 | Train CE: 0.0014 | Train Patch Entropy: 0.8683 | Val Loss: 0.0237 | Val Acc: 1.0000
+Epoch Time: 29.72s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155545_HierarchicalAttnMIL_epoch23.pth
+
+Epoch 24/30 (LR: 2.08e-04)
+Train Loss: 0.0002 | Train CE: 0.0011 | Train Patch Entropy: 0.8682 | Val Loss: 0.0346 | Val Acc: 1.0000
+Epoch Time: 34.09s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155619_HierarchicalAttnMIL_epoch24.pth
+
+Epoch 25/30 (LR: 2.08e-04)
+Train Loss: 0.0008 | Train CE: 0.0016 | Train Patch Entropy: 0.8661 | Val Loss: 0.0262 | Val Acc: 1.0000
+Epoch Time: 32.00s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155651_HierarchicalAttnMIL_epoch25.pth
+
+Epoch 26/30 (LR: 4.45e-05)
+Train Loss: 0.0009 | Train CE: 0.0017 | Train Patch Entropy: 0.8630 | Val Loss: 0.0275 | Val Acc: 1.0000
+Epoch Time: 30.68s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155721_HierarchicalAttnMIL_epoch26.pth
+
+Epoch 27/30 (LR: 4.45e-05)
+Train Loss: 0.0002 | Train CE: 0.0010 | Train Patch Entropy: 0.8654 | Val Loss: 0.0246 | Val Acc: 1.0000
+Epoch Time: 31.95s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155753_HierarchicalAttnMIL_epoch27.pth
+
+Epoch 28/30 (LR: 4.45e-05)
+Train Loss: 0.0008 | Train CE: 0.0017 | Train Patch Entropy: 0.8633 | Val Loss: 0.0194 | Val Acc: 1.0000
+Epoch Time: 33.63s
+Checkpoint saved: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/checkpoints/20261119_155827_HierarchicalAttnMIL_epoch28.pth
+
+Early stopping triggered at epoch 28. Best val loss: 0.0123
+
+Training completed!
+Restored epoch 20 with validation loss 0.012348
+
+============================================================
+EVALUATING MODEL
+============================================================
+
+Test Results:
+  Test Loss: 0.6361
+  Test Acc:  0.8889
+  Samples:   18
+Predictions saved to: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/predictions_best.csv
+Confusion matrix saved to: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745/confusion_matrix.png
+
+Results saved to: /gpfs/home/beh0765/Presentation3_base_code/team5_uni2_runs/baseline_64_cpu_newsplit01_job_9404811/run_20261119_153745
+
+Total execution time: 1294.91s (0.36 hours)
+Training completed successfully!
+End time: Thu Nov 19 15:59:22 CST 2026
